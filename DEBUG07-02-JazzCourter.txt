@@ -1,0 +1,79 @@
+pseudocode
+// Merge Fundraising Contributions for Homeroom A and B
+
+// Declarations
+string roomAName
+num roomAValue
+string roomBName
+num roomBValue
+string bothFilesDone = "N"
+num HIGH_VALUE = 999999
+
+// Input/Output Files
+InputFile roomAFile
+InputFile roomBFile
+OutputFile mergedFile
+
+// Initialization
+getReady()
+
+// Main Loop
+while bothFilesDone = "N" do
+detailLoop()
+endwhile
+
+// Cleanup
+allDone()
+stop
+
+// Initialization Routine
+getReady()
+open roomAFile "roomAFile.dat"
+open roomBFile "roomBFile.dat"
+open mergedFile "mergedFile.dat"
+readA()
+readB()
+checkBoth()
+return
+
+// Read Room A Record
+readA()
+input roomAName, roomAValue from roomAFile
+if eof then
+roomAValue = HIGH_VALUE
+endif
+return
+
+// Read Room B Record
+readB()
+input roomBName, roomBValue from roomBFile
+if eof then
+roomBValue = HIGH_VALUE
+endif
+return
+
+// Check Both Files
+checkBoth()
+if roomAValue = HIGH_VALUE AND roomBValue = HIGH_VALUE then
+bothFilesDone = "Y"
+endif
+return
+
+// Detail Loop
+detailLoop()
+if roomAValue > roomBValue then
+output roomAName, roomAValue to mergedFile
+readA()
+else
+output roomBName, roomBValue to mergedFile
+readB()
+endif
+checkBoth()
+return
+
+// Cleanup Routine
+allDone()
+close roomAFile
+close roomBFile
+close mergedFile
+return
